@@ -50,27 +50,23 @@ public class BurgerTest {
         Burger burger= new Burger();
         when(bun.getName()).thenReturn("REX");
         burger.setBuns(bun);
-        assertEquals("REX" ,burger.bun.getName());
 
+        assertEquals("REX" ,burger.bun.getName());
     }
 
 
       @Test
     public void addIngredientIsAdding() {
         Burger burger= new Burger();
-
           burger.addIngredient(ingredient);
-          assertTrue(burger.ingredients.contains(ingredient));
 
+          assertTrue(burger.ingredients.contains(ingredient));
     }
 
     @Test
     public void removeIngredientIsRemoving() {
         Burger burger= new Burger();
-
-
         burger.addIngredient(ingredient);
-
 
         burger.removeIngredient(burger.ingredients.indexOf(ingredient));
         assertFalse(burger.ingredients.contains(ingredient));
@@ -98,7 +94,9 @@ public class BurgerTest {
     @Test
     public void getPriceIsCalculete () {
         Burger burger= new Burger();
-       Ingredient ingredient1= new Ingredient(IngredientType.SAUCE, "Chili", (float)859.0);
+        Ingredient ingredient1= new Ingredient(IngredientType.SAUCE, "Chili", (float)859.0);
+
+
         burger.setBuns(bun);
         burger.ingredients.add(ingredient1);
 
@@ -111,6 +109,20 @@ public class BurgerTest {
     }
 
     @Test
-    public void getReceipt() {
+    public void getReceiptReturnRecipt() {
+        Burger burger= new Burger();
+      Ingredient ingredient1= new Ingredient(IngredientType.SAUCE, "Chili", (float)859.0);
+
+
+        burger.ingredients.add(ingredient1);
+
+        burger.setBuns(bun);
+        when(bun.getPrice()).thenReturn((float) 333.50);
+        when(bun.getName()).thenReturn("REX");
+        String actual= burger.getReceipt();
+        String expected= String.format("(==== REX ====)%n= sauce Chili =%n(==== REX ====)%n%nPrice: 1526,000000%n");
+        assertEquals(expected, actual);
+        //System.out.println(actual);
+
     }
 }
