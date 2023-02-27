@@ -9,7 +9,6 @@ public class IngredientTypeTest {
 
     @Test
     public void valuesOf() {
-
         assertEquals("FILLING", IngredientType.FILLING.toString());
         assertEquals("SAUCE", IngredientType.SAUCE.toString());
     }
